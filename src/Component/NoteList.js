@@ -1,20 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import NoteItem from './NoteItem'
 import './NoteList.css'
 
-class NoteList extends Component {
-    render() {
+export default function NoteList (props) {
         return (
             <section className="note-list">
                 <ul>
-                    <NoteItem />
-                    <NoteItem />
-                    <NoteItem />
-                    <NoteItem />
+                    {props.notes.map (( note, i) => 
+                            <NoteItem 
+                                key={i}
+                                id={note.id}
+                                name={note.name}
+                                modified={note.modified}/>
+                        
+                    )}
                 </ul>
             </section>
         )
-    }
-
 }
-export default NoteList; 
+
+NoteList.defaultProps = {
+    notes: [],
+  }
+  
